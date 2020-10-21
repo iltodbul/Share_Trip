@@ -20,7 +20,7 @@ namespace SharedTrip.Controllers
         {
             if (this.IsUserSignedIn())
             {
-                return this.Redirect("/Trips/All");
+                return this.Redirect("/");
             }
 
             return this.View();
@@ -31,7 +31,7 @@ namespace SharedTrip.Controllers
         {
             if (this.IsUserSignedIn())
             {
-                return this.Redirect("/Trips/All");
+                return this.Redirect("/");
             }
 
             var userId = this.usersService.GetUserId(username, password);
@@ -49,7 +49,7 @@ namespace SharedTrip.Controllers
         {
             if (this.IsUserSignedIn())
             {
-                return this.Redirect("/Trips/All");
+                return this.Redirect("/");
             }
 
             return this.View();
@@ -106,7 +106,7 @@ namespace SharedTrip.Controllers
         {
             if (!this.IsUserSignedIn())
             {
-                return this.Error("Only logged-in users can logout.");
+                return this.Redirect("/Users/Login");
             }
 
             this.SignOut();

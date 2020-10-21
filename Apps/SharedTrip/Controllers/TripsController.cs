@@ -18,17 +18,64 @@ namespace SharedTrip.Controllers
 
         public HttpResponse All()
         {
-            return this.View();
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
+            var trips = tipsServices.GetAll();
+            return this.View(trips);
+        }
+
+        public HttpResponse Details(string tripId)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
+            var trip = this.tipsServices.GetDetails(tripId);
+            return this.View(trip);
         }
 
         public HttpResponse Add()
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             return this.View();
+        }
+
+        public HttpResponse AddUserToTrip(string tripId)
+        {
+            if (!IsUserSignedIn())
+            {
+                return Redirect("/Users/Login");
+            }
+
+            if (!tipsServices.HasAvailableSeats(tripId))
+            {
+                return Error("No seats available");
+            }
+
+            var userId = GetUserId();
+            if (!this.tipsServices.AddUserToTrip(userId, tripId))
+            {
+                return Redirect("/Trips/Details?tripId=" + tripId);
+            }
+            return Redirect("/Trips/All");
         }
 
         [HttpPost]
         public HttpResponse Add(AddTripInputModel model)
         {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
             if (string.IsNullOrEmpty(model.StartPoint))
             {
                 return this.Error("Invalid start point");
