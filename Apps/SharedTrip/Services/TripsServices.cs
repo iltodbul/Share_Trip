@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 using SharedTrip.Data;
 using SharedTrip.Models;
 using SharedTrip.ViewModels.Trips;
@@ -17,13 +16,13 @@ namespace SharedTrip.Services
         }
 
 
-        public void AddTrip(AddTripInputModel tripModel)
+        public void Create(AddTripInputModel tripModel)
         {
             var trip = new Trip()
             {
                 StartPoint = tripModel.StartPoint,
                 EndPoint = tripModel.EndPoint,
-                DepartureTime = tripModel.DepartureTime,
+                DepartureTime = DateTime.ParseExact(tripModel.DepartureTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture),
                 Description = tripModel.Description,
                 ImagePath = tripModel.ImagePath,
                 Seats = tripModel.Seats,

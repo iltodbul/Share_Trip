@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
 namespace SharedTrip.ViewModels.Trips
 {
@@ -9,7 +6,7 @@ namespace SharedTrip.ViewModels.Trips
     {
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }
-        public DateTime DepartureTime { get; set; }
+        public string DepartureTime { get; set; }
 
         //public string DepartureTimeAsString => DateTime.TryParseExact(DepartureTime, "dd.MM.yyyy HH:mm",
           //  CultureInfo.InvariantCulture, DateTimeStyles.None);

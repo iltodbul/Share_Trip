@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 using SharedTrip.Services;
 using SharedTrip.ViewModels.Trips;
 using SUS.HTTP;
@@ -15,6 +14,11 @@ namespace SharedTrip.Controllers
         public TripsController(ITipsServices tipsServices)
         {
             this.tipsServices = tipsServices;
+        }
+
+        public HttpResponse All()
+        {
+            return this.View();
         }
 
         public HttpResponse Add()
@@ -43,6 +47,11 @@ namespace SharedTrip.Controllers
             if (string.IsNullOrEmpty(model.Description) ||model.Description.Length > 80)
             {
                 return this.Error("Description is required and must by max 80 characters length");
+            }
+
+            if (!DateTime.TryParseExact(model.DepartureTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+            {
+                return this.Error("Departure time must be in dd.MM.yyyy HH:mm format");
             }
 
             this.tipsServices.Create(model);
