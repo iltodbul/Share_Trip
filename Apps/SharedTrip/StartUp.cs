@@ -18,6 +18,7 @@ namespace SharedTrip
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
             serviceCollection.Add<IUsersService, UsersService>();
+            serviceCollection.Add<ITipsServices, TripsServices>();
         }
     }
 }
