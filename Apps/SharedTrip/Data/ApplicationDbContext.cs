@@ -23,9 +23,11 @@ namespace SharedTrip.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DELL-IT\SQLEXPRESS;Database=SharedTrip;Trusted_Connection=True;Integrated Security=True;");
-
-            base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(
+                    @"Server=DELL-IT\SQLEXPRESS;Database=SharedTrip;Trusted_Connection=True;Integrated Security=True;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,7 +35,7 @@ namespace SharedTrip.Data
             modelBuilder.Entity<UserTrip>()
                 .HasKey(k => new {k.UserId, k.TripId});
 
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

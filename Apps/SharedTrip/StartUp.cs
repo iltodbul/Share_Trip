@@ -1,4 +1,6 @@
-﻿namespace SharedTrip
+﻿using SharedTrip.Services;
+
+namespace SharedTrip
 {
     using Microsoft.EntityFrameworkCore;
     using SharedTrip.Data;
@@ -15,6 +17,7 @@
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
+            serviceCollection.Add<IUsersService, UsersService>();
         }
     }
 }
