@@ -3,18 +3,20 @@
     <div class="container-fluid ml-5">
         <table class="table table-hover">
             <thead>
-                <tr class="row">
-                    <th scope="col" class="col-lg-3 suls-text-color">Name</th>
-                    <th scope="col" class="col-lg-3 suls-text-color">Count</th>
-                    <th scope="col" class="col-lg-3 suls-text-color">Submit</th>
-                    <th scope="col" class="col-lg-3 suls-text-color">Details</th>
-                </tr>
+            <tr class="row">
+                <th scope="col" class="col-lg-3 suls-text-color">Name</th>
+                <th scope="col" class="col-lg-3 suls-text-color">Count</th>
+                <th scope="col" class="col-lg-3 suls-text-color">Submit</th>
+                <th scope="col" class="col-lg-3 suls-text-color">Details</th>
+            </tr>
             </thead>
             <tbody>
-            <tr class="row">
+            @foreach (var problem in Model)
+            {
+                <tr class="row">
                     <td class="col-lg-3 suls-text-color">@problem.Name</td>
                     <td class="col-lg-3 suls-text-color">@problem.Count</td>
-                <td class="col-lg-3 suls-text-color">
+                    <td class="col-lg-3 suls-text-color">
                         <div class="button-holder">
                             <a href="/Submissions/Create?id=@problem.Id" class="btn btn-warning">Submit</a>
                         </div>
@@ -25,6 +27,7 @@
                         </div>
                     </td>
                 </tr>
+            }
             </tbody>
         </table>
     </div>
