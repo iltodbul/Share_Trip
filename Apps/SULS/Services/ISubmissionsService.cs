@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SULS.ViewModels.Submissions;
-
-namespace SULS.Services
+﻿namespace SULS.Services
 {
     public interface ISubmissionsService
     {
-        void Create(CreateSubmissionInputModel inputModel);
+        void Create(string problemId, string userId, string code);
+
+        string GetNameById(string id);
+
+        void Delete(string id);
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using SULS.Services;
 using SULS.ViewModels.Users;
 using SUS.HTTP;
@@ -32,10 +29,10 @@ namespace SULS.Controllers
         [HttpPost]
         public HttpResponse Login(string username, string password)
         {
-            //    if (this.IsUserSignedIn())
-            //    {
-            //        return this.Redirect("/");
-            //    }
+            //if (this.IsUserSignedIn())
+            //{
+            //    return this.Redirect("/");
+            //}
 
             var userId = this.usersService.GetUserId(username, password);
             if (userId == null)
@@ -50,10 +47,10 @@ namespace SULS.Controllers
         // GET /users/register
         public HttpResponse Register()
         {
-            //if (this.IsUserSignedIn())
-            //{
-            //    return this.Redirect("/");
-            //}
+            if (this.IsUserSignedIn())
+            {
+                return this.Redirect("/");
+            }
 
             return this.View();
         }
@@ -61,10 +58,6 @@ namespace SULS.Controllers
         [HttpPost]
         public HttpResponse Register(RegisterInputModel input)
         {
-            //    if (this.IsUserSignedIn())
-            //    {
-            //        return this.Redirect("/Trips/All");
-            //    }
 
             if (string.IsNullOrEmpty(input.Username)
                 || input.Username.Length < 5
@@ -109,7 +102,7 @@ namespace SULS.Controllers
         {
             if (!this.IsUserSignedIn())
             {
-                return this.Redirect("/Users/Login");
+                return this.Redirect("/");
             }
 
             this.SignOut();

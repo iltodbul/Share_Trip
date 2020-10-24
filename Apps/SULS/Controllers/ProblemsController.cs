@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SULS.Services;
+﻿using SULS.Services;
 using SULS.ViewModels.Problems;
 using SUS.HTTP;
 using SUS.MvcFramework;
@@ -50,6 +47,17 @@ namespace SULS.Controllers
             this.problemsService.Create(inputModel.Name, inputModel.TotalPoints);
 
             return this.Redirect("/");
+        }
+
+        public HttpResponse Details(string id)
+        {
+            if (!this.IsUserSignedIn())
+            {
+                return this.Redirect("/Users/Login");
+            }
+
+            var viewModel = this.problemsService.GetById(id);
+            return this.View(viewModel);
         }
     }
 }

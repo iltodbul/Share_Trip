@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SULS.Data;
 using SULS.Models;
 using SULS.ViewModels.Problems;
@@ -41,6 +39,26 @@ namespace SULS.Services
                 .ToList();
 
             return problems;
+        }
+
+        public ProblemViewModel GetById(string id)
+        {
+            return this.dbContext.Problems
+                .Where(x => x.Id == id)
+                .Select(x => new ProblemViewModel()
+                {
+                    Name = x.Name,
+                    Submissions = x.Submissions.Select(s => new SubmissionViewModel()
+                    {
+                        CreatedOn = s.CreatedOn,
+                        SubmissionId = s.Id,
+                        Username = s.User.Username,
+                        AchievedResult = s.AchievedResult,
+                        MaxPoints = x.Points
+                    })
+                        .ToList()
+                })
+                .FirstOrDefault();
         }
     }
 }

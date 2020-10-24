@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using SULS.Data;
 using SULS.Services;
@@ -20,6 +18,7 @@ namespace SULS
         {
             serviceCollection.Add<IUsersService, UsersService>();
             serviceCollection.Add<IProblemsService, ProblemsService>();
+            serviceCollection.Add<ISubmissionsService, SubmissionsService>();
         }
 
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SULS.ViewModels.Problems
+﻿namespace SULS.ViewModels.Problems
 {
     public class HomePageProblemViewModel
     {

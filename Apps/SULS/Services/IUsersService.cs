@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SULS.Services
+﻿namespace SULS.Services
 {
     public interface IUsersService
     {

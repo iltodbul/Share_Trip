@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SULS.Models;
+﻿using System.Collections.Generic;
 using SULS.ViewModels.Problems;
 
 namespace SULS.Services
@@ -11,5 +8,7 @@ namespace SULS.Services
         void Create(string name, int totalPoints);
 
         IEnumerable<HomePageProblemViewModel> GetAll();
+
+        ProblemViewModel GetById(string id);
     }
 }
